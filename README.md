@@ -1,6 +1,6 @@
 # AssetManagement
 
-AssetManagement é um sistema de **gestão de ativos** (Asset Management System) desenvolvido em **.NET 8**, seguindo os princípios do **Domain-Driven Design (DDD)** e **SOLID**. O sistema permite cadastrar, gerenciar e monitorar equipamentos, fornecendo APIs REST para integração com front-end ou outras aplicações.
+AssetManagement é um sistema de **gestão de ativos** (Asset Management System) desenvolvido em **.NET 8**, seguindo os princípios do **Domain-Driven Design (DDD)** e SOLID. O sistema permite cadastrar, gerenciar e monitorar equipamentos, fornecendo APIs REST para integração com front-end ou outras aplicações.
 
 ## Arquitetura
 
