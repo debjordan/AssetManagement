@@ -18,7 +18,7 @@ O projeto segue uma arquitetura **DDD** com múltiplas camadas:
 
   * Manutenção
   * Inventário
-  * Fornecedores / Contratos
+  * Fornecedores
   * Financeiro / Custos
   * Monitoramento em tempo real (IoT)
   * Relatórios e KPIs
