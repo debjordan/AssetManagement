@@ -11,8 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AssetManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();
-builder.Services.AddScoped<EquipmentService>();
+services.AddScoped<IEquipmentAppService, EquipmentAppService>();
+services.AddScoped<IEquipmentDomainService, EquipmentDomainService>();
+services.AddScoped<IEquipmentRepository, EquipmentRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
