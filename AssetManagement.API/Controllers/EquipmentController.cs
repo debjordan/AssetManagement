@@ -1,5 +1,5 @@
 using AssetManagement.Application.DTOs;
-using AssetManagement.Application.Services;
+using AssetManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AssetManagement.API.Controllers
@@ -8,44 +8,57 @@ namespace AssetManagement.API.Controllers
     [Route("api/[controller]")]
     public class EquipmentController : ControllerBase
     {
-        private readonly EquipmentService _service;
+        private readonly IEquipmentAppService _equipmentAppService;
 
-        public EquipmentController(EquipmentService service)
+        public EquipmentController(IEquipmentAppService equipmentAppService)
         {
-            _service = service;
+            _equipmentAppService = equipmentAppService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var equipments = await _service.GetAllAsync();
+            var equipments = await _equipmentAppService.GetAllAsync();
             return Ok(equipments);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var equipment = await _service.GetByIdAsync(id);
-            if (equipment == null) return NotFound();
-            return Ok(equipment);
+            try
+            {
+                var equipment = await _equipmentAppService.GetByIdAsync(id);
+                return Ok(equipment);
+            }
+            catch (EquipmentNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] EquipmentDto dto)
-        {
-            await _service.AddAsync(dto);
-            return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] EquipmentDto dto)
+        public async Task<IActionResult> Create([FromBody] CreateEquipmentDto dto)
         {
             try
             {
-                await _service.UpdateAsync(id, dto);
+                var equipmentId = await _equipmentAppService.CreateAsync(dto);
+                return CreatedAtAction(nameof(GetById), new { id = equipmentId }, new { id = equipmentId });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateEquipmentDto dto)
+        {
+            try
+            {
+                await _equipmentAppService.UpdateAsync(id, dto);
                 return NoContent();
             }
-            catch
+            catch (EquipmentNotFoundException)
             {
                 return NotFound();
             }
@@ -54,8 +67,15 @@ namespace AssetManagement.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _service.DeleteAsync(id);
-            return NoContent();
+            try
+            {
+                await _equipmentAppService.DeleteAsync(id);
+                return NoContent();
+            }
+            catch (EquipmentNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }
