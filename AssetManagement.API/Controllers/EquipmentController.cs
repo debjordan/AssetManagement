@@ -1,5 +1,6 @@
 using AssetManagement.Application.DTOs;
 using AssetManagement.Application.Interfaces;
+using AssetManagement.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AssetManagement.API.Controllers
