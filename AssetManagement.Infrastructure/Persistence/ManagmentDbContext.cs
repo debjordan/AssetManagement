@@ -1,5 +1,4 @@
 using AssetManagement.Domain.Entities;
-using AssetManagement.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssetManagement.Infrastructure.Persistence
