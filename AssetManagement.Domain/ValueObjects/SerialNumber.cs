@@ -15,7 +15,7 @@ namespace AssetManagement.Domain.ValueObjects
             Value = value;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is SerialNumber other && Value == other.Value;
         }
@@ -25,12 +25,12 @@ namespace AssetManagement.Domain.ValueObjects
             return Value.GetHashCode();
         }
 
-        public static bool operator ==(SerialNumber left, SerialNumber right)
+        public static bool operator ==(SerialNumber? left, SerialNumber? right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(SerialNumber left, SerialNumber right)
+        public static bool operator !=(SerialNumber? left, SerialNumber? right)
         {
             return !Equals(left, right);
         }
