@@ -14,6 +14,8 @@ O projeto segue uma arquitetura **DDD** com múltiplas camadas:
 ## Módulos
 
 * **Equipamentos (Equipment)**: cadastro, atualização, listagem e remoção de equipamentos.
+* **Auth (JWT)**: Autenticação para uso protegido da API com gerenciamento de usuários - Claims: Admin e CommonUser.
+
 * Futuramente podem ser adicionados módulos como:
 
   * Manutenção
@@ -25,7 +27,7 @@ O projeto segue uma arquitetura **DDD** com múltiplas camadas:
 
 ## Tecnologias
 
-* .NET 8
+* .NET 9
 * C#
 * Entity Framework Core
 * SQL Server ou SQLite (para testes)
