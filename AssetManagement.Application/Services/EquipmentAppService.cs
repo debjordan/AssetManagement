@@ -3,6 +3,7 @@ using AssetManagement.Application.Interfaces;
 using AssetManagement.Domain.Entities;
 using AssetManagement.Domain.Exceptions;
 using AssetManagement.Domain.Repositories;
+using AssetManagement.Domain.Services;
 using AssetManagement.Domain.ValueObjects;
 
 namespace AssetManagement.Application.Services
