@@ -82,3 +82,5 @@ node_modules/
 dist/
 build/
 .env
+*.db-shm
+*.db-wal
