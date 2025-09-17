@@ -11,6 +11,7 @@ namespace AssetManagement.Infrastructure.Persistence
         }
 
         public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
