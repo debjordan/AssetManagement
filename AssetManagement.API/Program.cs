@@ -34,6 +34,15 @@ builder.Services.AddDbContext<AssetManagementDbContext>(options =>
 builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();
 builder.Services.AddScoped<IEquipmentDomainService, EquipmentDomainService>();
 builder.Services.AddScoped<IEquipmentAppService, EquipmentAppService>();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<IAuthDomainService>(provider =>
+{
+    var userRepository = provider.GetRequiredService<IUserRepository>();
+    var jwtSecret = builder.Configuration["Jwt:Secret"] ?? "fallback_secret";
+    return new AuthDomainService(userRepository, jwtSecret);
+});
+builder.Services.AddScoped<IAuthAppService, AuthAppService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
