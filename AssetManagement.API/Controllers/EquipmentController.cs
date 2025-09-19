@@ -5,17 +5,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AssetManagement.API.Controllers
 {
+    /// <summary>
+    /// Controlador para gerenciamento de equipamentos com operações CRUD
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class EquipmentController : ControllerBase
     {
         private readonly IEquipmentAppService _equipmentAppService;
 
+        /// <summary>
+        /// Construtor do controlador de equipamentos
+        /// </summary>
+        /// <param name="equipmentAppService">Serviço de aplicação para operações com equipamentos</param>
         public EquipmentController(IEquipmentAppService equipmentAppService)
         {
             _equipmentAppService = equipmentAppService;
         }
 
+        /// <summary>
+        /// Obtém todos os equipamentos cadastrados
+        /// </summary>
+        /// <returns>Lista de equipamentos</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -23,6 +34,11 @@ namespace AssetManagement.API.Controllers
             return Ok(equipments);
         }
 
+        /// <summary>
+        /// Obtém um equipamento específico pelo ID
+        /// </summary>
+        /// <param name="id">ID do equipamento</param>
+        /// <returns>Dados do equipamento ou NotFound</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -37,6 +53,11 @@ namespace AssetManagement.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Cria um novo equipamento
+        /// </summary>
+        /// <param name="dto">Dados para criação do equipamento</param>
+        /// <returns>ID do equipamento criado ou BadRequest em caso de erro</returns>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateEquipmentDto dto)
         {
@@ -51,6 +72,12 @@ namespace AssetManagement.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza um equipamento existente
+        /// </summary>
+        /// <param name="id">ID do equipamento a ser atualizado</param>
+        /// <param name="dto">Dados atualizados do equipamento</param>
+        /// <returns>NoContent ou NotFound</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateEquipmentDto dto)
         {
@@ -65,6 +92,11 @@ namespace AssetManagement.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Exclui um equipamento
+        /// </summary>
+        /// <param name="id">ID do equipamento a ser excluído</param>
+        /// <returns>NoContent ou NotFound</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
