@@ -1,39 +1,38 @@
 # AssetManagement
 
-AssetManagement é um sistema de **gestão de ativos** (Asset Management System) desenvolvido em **.NET 8**, seguindo os princípios do **Domain-Driven Design (DDD)** e SOLID. O sistema permite cadastrar, gerenciar e monitorar equipamentos, fornecendo APIs REST para integração com front-end ou outras aplicações.
+AssetManagement is an **asset management system** developed in **.NET 8**, following **Domain-Driven Design (DDD)** principles and SOLID. The system allows registering, managing, and monitoring equipment, providing REST APIs for integration with front-end or other applications.
 
-## Arquitetura
+## Architecture
 
-O projeto segue uma arquitetura **DDD** com múltiplas camadas:
+The project follows a **DDD** architecture with multiple layers:
 
-* **Domain**: entidades, agregados, value objects e regras de negócio.
-* **Application**: casos de uso, serviços de aplicação, DTOs e interfaces de repositórios.
-* **Infrastructure**: implementação de repositórios, persistência (Entity Framework Core) e serviços externos.
-* **API**: camada de apresentação, controllers REST, Swagger e configuração do sistema.
+* **Domain**: entities, aggregates, value objects, and business rules
+* **Application**: use cases, application services, DTOs, and repository interfaces
+* **Infrastructure**: repository implementations, persistence (Entity Framework Core), and external services
+* **API**: presentation layer, REST controllers, Swagger, and system configuration
 
-## Módulos
+## Modules
 
-* **Equipamentos (Equipment)**: cadastro, atualização, listagem e remoção de equipamentos.
-* **Auth (JWT)**: Autenticação para uso protegido da API com gerenciamento de usuários - Claims: Admin e CommonUser.
+* **Equipment**: register, update, list, and remove equipment
+* **Auth (JWT)**: Authentication for protected API usage with user management - Claims: Admin and CommonUser
 
-* Futuramente podem ser adicionados módulos como:
+* Future modules may include:
+  * Maintenance
+  * Inventory
+  * Suppliers
+  * Financial / Costs
+  * Real-time monitoring (IoT)
+  * Reports and KPIs
 
-  * Manutenção
-  * Inventário
-  * Fornecedores
-  * Financeiro / Custos
-  * Monitoramento em tempo real (IoT)
-  * Relatórios e KPIs
-
-## Tecnologias
+## Technologies
 
 * .NET 9
 * C#
 * Entity Framework Core
-* SQL Server ou SQLite (para testes)
-* Swagger (para documentação e teste da API)
+* SQL Server or SQLite (for testing)
+* Swagger (for API documentation and testing)
 
-## Estrutura de Pastas
+## Folder Structure
 
 ```
 AssetManagement/
@@ -43,15 +42,15 @@ AssetManagement/
 └─ AssetManagement.API/
 ```
 
-## Como Rodar
+## How to Run
 
-1. Restaurar pacotes:
+1. Restore packages:
 
 ```bash
 dotnet restore
 ```
 
-2. Criar migrations e atualizar o banco:
+2. Create migrations and update the database:
 
 ```bash
 cd AssetManagement.Infrastructure
@@ -60,30 +59,30 @@ dotnet ef database update --startup-project ../AssetManagement.API
 cd ..
 ```
 
-3. Rodar a API:
+3. Run the API:
 
 ```bash
 cd AssetManagement.API
 dotnet run
 ```
 
-A API estará disponível em:
+The API will be available at:
 
 ```
 http://localhost:5000
 https://localhost:5001
 ```
 
-O Swagger para testes e documentação:
+Swagger for testing and documentation:
 
 ```
 https://localhost:5001/swagger
 ```
 
-## Endpoints do módulo Equipamentos
+## Equipment Module Endpoints
 
-* `GET /api/equipment` – Lista todos os equipamentos
-* `GET /api/equipment/{id}` – Busca equipamento por ID
-* `POST /api/equipment` – Cria novo equipamento
-* `PUT /api/equipment/{id}` – Atualiza equipamento
-* `DELETE /api/equipment/{id}` – Remove equipamento
+* `GET /api/equipment` – List all equipment
+* `GET /api/equipment/{id}` – Find equipment by ID
+* `POST /api/equipment` – Create new equipment
+* `PUT /api/equipment/{id}` – Update equipment
+* `DELETE /api/equipment/{id}` – Remove equipment
